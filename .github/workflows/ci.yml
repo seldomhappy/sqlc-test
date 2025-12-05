@@ -30,13 +30,6 @@ jobs:
           if [ -n "$fmt" ]; then echo "Unformatted files:"; echo "$fmt"; exit 1; fi
         shell: bash
 
-      - name: Check formatting (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          $fmt = gofmt -l .
-          if ($fmt) { Write-Host 'Unformatted files:'; Write-Host $fmt; exit 1 }
-        shell: pwsh
-
       - name: Vet
         run: go vet ./...
 
